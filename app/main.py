@@ -1,6 +1,8 @@
 import signal
 import sys
 import time
+import os
+os.environ.setdefault("RUUVI_BLE_ADAPTER", "bluez")
 
 from ruuvitag_sensor.ruuvi import RuuviTagSensor
 
