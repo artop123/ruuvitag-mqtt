@@ -57,8 +57,12 @@ Create a JSON mapping of devices (`mac-address: friendly name`):
 Add the devices to the `docker-compose.yml` environment variables:
 
 ```yaml
+services:
+  ruuvi_mqtt:
+    # ...
     environment:
       RUUVI_TAGS: '{"A1:B2:C3:D4:E5:F6":"outside"}'
+    # ...
 ```
 
 Start the container

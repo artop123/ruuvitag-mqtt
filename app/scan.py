@@ -1,13 +1,11 @@
 import os
 os.environ.setdefault("RUUVI_BLE_ADAPTER", "bluez")
 
+import ruuvitag_sensor.log
 from ruuvitag_sensor.ruuvi import RuuviTagSensor
 
-def main():
-    print("Scanning for RuuviTags ...")
-    print("Tip: Move the tags to make them advertise more often.\n")
+ruuvitag_sensor.log.enable_console()
 
-    RuuviTagSensor.find_ruuvitags()
-
+# This will print sensor's mac and state when new sensor is found
 if __name__ == "__main__":
-    main()
+    RuuviTagSensor.find_ruuvitags()
