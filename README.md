@@ -76,8 +76,8 @@ Start the container
 docker compose up -d
 ```
 
-The entities will be added to Home Assistant automatically if [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery) is enabled:
+The entities will be added to Home Assistant automatically if [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery) is enabled.
 
-<p align="left">
-<img src="assets/ha.png" alt="Home Assitant">
+<p align="center">
+<img src="assets/ha.png" alt="Home Assitant" style="max-width: 380px; width: 100%">
 </p>

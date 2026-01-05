@@ -9,14 +9,14 @@ def safe_topic_part(value: str) -> str:
         value.strip()
         .replace(" ", "_")
         .replace("/", "_")
-        .replace(":", "_")
+        .replace(":", "")
         .replace("#", "_")
         .replace("+", "_")
     )
 
 
 def device_id_from_mac(mac: str) -> str:
-    return safe_topic_part(mac.lower().replace(":", ""))
+    return safe_topic_part(mac.lower())
 
 
 @dataclass(frozen=True)

@@ -27,6 +27,6 @@ def test_topic_helpers():
     )
     assert (
         pub.topic_json("AA:BB:CC:11:22:99")
-        == "ruuvi/AA_BB_CC_11_22_99/json"
+        == "ruuvi/AABBCC112299/json"
     )
     
