@@ -1,0 +1,16 @@
+services:
+  ruuvi_mqtt:
+    build: .
+    container_name: ruuvi_mqtt
+    privileged: true
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /var/run/dbus:/var/run/dbus
+    environment:
+      RUUVI_TAGS: '{"AA:BB:CC:11:22:33":"device1","AA:BB:CC:44:55:66":"device2"}'
+      MQTT_HOST: "192.168.68.1"
+      MQTT_PORT: "1883"
+      MQTT_USER: "mqttuser"
+      MQTT_PASS: "mqttpass"
+      PUBLISH_MIN_INTERVAL: "15"
