@@ -3,6 +3,11 @@
 This project listens to RuuviTag BLE advertisements (via BlueZ) and publishes sensor readings to MQTT.
 It also publishes Home Assistant MQTT Discovery configs automatically, so sensors appear in Home Assistant without manual configuration.
 
+<p align="left">
+<img src="https://github.com/artop123/ruuvitag-mqtt/actions/workflows/ci.yml/badge.svg" alt="CI tests">
+<img src="https://github.com/artop123/ruuvitag-mqtt/actions/workflows/publish.yml/badge.svg" alt="Docker publish">
+</p>
+
 ## Features
 
 - Reads RuuviTag BLE advertisements (BlueZ)
@@ -70,3 +75,9 @@ Start the container
 ```bash
 docker compose up -d
 ```
+
+The entities will be added to Home Assistant automatically if [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery) is enabled:
+
+<p align="left">
+<img src="assets/ha.png" alt="Home Assitant">
+</p>
