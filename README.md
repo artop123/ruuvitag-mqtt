@@ -78,7 +78,7 @@ docker compose up -d
 
 The entities will be added to Home Assistant automatically if [MQTT Discovery](https://www.home-assistant.io/integrations/mqtt/#mqtt-discovery) is enabled.
 
-<p align="center">
+<p>
 <img src="assets/ha.png" alt="Home Assitant" style="width: 380px;">
 </p>
 
@@ -92,9 +92,9 @@ The entities will be added to Home Assistant automatically if [MQTT Discovery](h
 | `MQTT_PORT` | MQTT broker port. | `1883` |
 | `MQTT_USER` | MQTT username (if broker requires authentication). |  |
 | `MQTT_PASS` | MQTT password (if broker requires authentication). |  |
-| `MQTT_PREFIX` | Base MQTT topic prefix for all published topics (e.g. `ruuvi`). | `ruuvi` |
+| `MQTT_PREFIX` | Base MQTT topic prefix for all published topics. | `ruuvi` |
 | `MQTT_RETAIN` | If `true`, published sensor JSON values are retained by the broker (latest value stored). | `false` |
 | `MQTT_QOS` | MQTT QoS level for sensor JSON publishing (`0`, `1`, or `2`). | `0` |
 | `HA_DISCOVERY_PREFIX` | Home Assistant MQTT discovery prefix. Home Assistant listens on this prefix for auto-discovery configs. | `homeassistant` |
 | `AVAIL_ONLINE` | Payload sent to availability topics when the publisher/tag is online. | `online` |
-| `AVAIL_OFFLINE` | Payload sent to availability topics when the publisher/tag is offline. Also used for MQTT LWT (crash detection). | `offline` |
+| `AVAIL_OFFLINE` | Payload sent to availability topics when the publisher/tag is offline. | `offline` |
