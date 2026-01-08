@@ -127,7 +127,7 @@ class RuuviMqttPublisher:
                 self.publish_ha_discovery(mac, name)
             self.publish_all_online()
 
-        def on_disconnect(_client, _userdata, reason_code, _properties=None):
+        def on_disconnect(_client, _userdata, disconnect_flags, reason_code, properties):
             print(f"MQTT disconnected, reason_code={reason_code} (will retry)")
 
         client.on_connect = on_connect
