@@ -1,8 +1,13 @@
+from datetime import datetime
 import json
 import os
 from dataclasses import dataclass
 from typing import Dict
 
+def write_log(message: str):
+    time = datetime.now().isoformat(timespec="seconds")
+    message = f"{time} {message}"
+    print(message)
 
 def safe_topic_part(value: str) -> str:
     return (
@@ -14,10 +19,8 @@ def safe_topic_part(value: str) -> str:
         .replace("+", "_")
     )
 
-
 def device_id_from_mac(mac: str) -> str:
     return safe_topic_part(mac.lower())
-
 
 @dataclass(frozen=True)
 class Settings:
