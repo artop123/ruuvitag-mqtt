@@ -1,12 +1,9 @@
 import json
 import time
+import paho.mqtt.client as mqtt
 from datetime import datetime
 from typing import Dict, Optional
-
-import paho.mqtt.client as mqtt
-
-from .config import Settings, safe_topic_part, device_id_from_mac
-
+from .config import Settings, safe_topic_part, device_id_from_mac, write_log
 
 class RuuviMqttPublisher:
     def __init__(self, settings: Settings):
@@ -117,7 +114,7 @@ class RuuviMqttPublisher:
         client.reconnect_delay_set(min_delay=1, max_delay=60)
 
         def on_connect(_client, _userdata, _flags, reason_code, _properties=None):
-            print(f"MQTT connected, reason_code={reason_code}")
+            write_log(f"MQTT connected, reason_code={reason_code}")
 
             # Bridge online
             _client.publish(bridge_avail, self.s.avail_online, qos=1, retain=True)
@@ -128,7 +125,7 @@ class RuuviMqttPublisher:
             self.publish_all_online()
 
         def on_disconnect(_client, _userdata, disconnect_flags, reason_code, properties):
-            print(f"MQTT disconnected, reason_code={reason_code} (will retry)")
+            write_log(f"MQTT disconnected, reason_code={reason_code} (will retry)")
 
         client.on_connect = on_connect
         client.on_disconnect = on_disconnect

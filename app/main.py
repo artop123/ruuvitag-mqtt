@@ -5,19 +5,19 @@ import os
 os.environ.setdefault("RUUVI_BLE_ADAPTER", "bluez")
 
 from ruuvitag_sensor.ruuvi import RuuviTagSensor
-
-from .config import load_settings
+from .config import load_settings, write_log
 from .publisher import RuuviMqttPublisher
-
 
 def main():
     s = load_settings()
 
-    print("Starting RuuviTag → MQTT publisher")
-    print("Tags:")
+    write_log("Starting RuuviTag → MQTT publisher")
+    write_log("Tags:")
+
     for mac, name in s.tags.items():
-        print(f" - {mac} = {name}")
-    print(
+        write_log(f" - {mac} = {name}")
+
+    write_log(
         f"MQTT: {s.mqtt_host}:{s.mqtt_port}, "
         f"prefix='{s.mqtt_prefix}', retain={s.mqtt_retain}, qos={s.mqtt_qos}, "
         f"min_interval={s.publish_min_interval}s"
@@ -28,14 +28,14 @@ def main():
 
     # Graceful shutdown → publish offline
     def shutdown(_signum=None, _frame=None):
-        print("Shutting down, publishing OFFLINE ...")
+        write_log("Shutting down, publishing OFFLINE ...")
         try:
             if pub.client and pub.client.is_connected():
                 pub.publish_all_offline()
                 pub.client.publish(pub.topic_bridge_availability(), s.avail_offline, qos=1, retain=True)
                 time.sleep(0.2)
         except Exception as e:
-            print("Failed to publish offline:", e)
+            write_log(f"Failed to publish offline: {e}")
 
         pub.disconnect()
         sys.exit(0)
@@ -52,7 +52,7 @@ def main():
         try:
             pub.publish_ruuvi(mac, payload)
         except Exception as e:
-            print(f"MQTT publish failed for {mac}: {e}")
+            write_log(f"MQTT publish failed for {mac}: {e}")
 
     # Blocks and calls callback when data arrives
     RuuviTagSensor.get_data(callback, macs)
@@ -60,7 +60,6 @@ def main():
     # Keep alive
     while True:
         time.sleep(60)
-
 
 if __name__ == "__main__":
     main()

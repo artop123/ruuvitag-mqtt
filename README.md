@@ -98,3 +98,4 @@ The entities will be added to Home Assistant automatically if [MQTT Discovery](h
 | `HA_DISCOVERY_PREFIX` | Home Assistant MQTT discovery prefix. Home Assistant listens on this prefix for auto-discovery configs. | `homeassistant` |
 | `AVAIL_ONLINE` | Payload sent to availability topics when the publisher/tag is online. | `online` |
 | `AVAIL_OFFLINE` | Payload sent to availability topics when the publisher/tag is offline. | `offline` |
+| `TZ` | Timezone for log messages (eg. `Europe/Helsinki`) | `Etc/UTC` |
