@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Dict
 
 def write_log(message: str):
-    time = datetime.now().isoformat(timespec="seconds")
+    time = datetime.now().isoformat(sep=" ", timespec="seconds")
     message = f"{time} {message}"
     print(message)
 
